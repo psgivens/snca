@@ -1,4 +1,4 @@
-#!/usr/bin/pwsh-preview
+#!/usr/bin/pwsh
 
 # https://docs.microsoft.com/en-us/azure/storage/common/storage-powershell-guide-full
 
@@ -12,9 +12,15 @@ Get-AzureRMStorageAccount | Select StorageAccountName, Location
 $resourceGroup = "stoneviewnaturecenter"
 $storageAccountName = "stoneviewnaturecenter"
 
-$storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroup `
+$storageAccount = Get-AzureRmStorageAccount `
+  -ResourceGroupName $resourceGroup `
   -Name $storageAccountName 
 
+
+# These are not working. Should upload through the explorer.
+EXIT
+
+Start-AzureStorageBlobCopy -SrcDir "web" -DestContainer '$web'
 
 Start-AzureStorageBlobCopy -SrcContainer "web" -DestContainer '$web'
 
